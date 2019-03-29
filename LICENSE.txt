@@ -1,3 +1,5 @@
+BSD 3-Clause License
+
 Copyright (c) 2019, Fuad Aleskerov, Natalia Meshcheryakova, Sergey Shvydun
 All rights reserved.
 
