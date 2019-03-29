@@ -66,16 +66,19 @@ Generate a network using NetworkX package
     >>> slric.lric(G, q=60, size=1, models='pagerank') # LRIC (PageRank)
     {1: 0.32165639923246203, 4: 0.0, 2: 0.18808528619697315, 3: 0.49025831457056473}
  
+ 
  **Case 2** 
 - *q*=5 for each node (defined quota, *dq*);
 - nodes have the same size (*size* = 1).
 
+ 
     
     >>> slric.sric(G, dq=5, size=1) # SRIC
     {1: 0.21153846153846154, 4: 0.0, 2: 0.28846153846153844, 3: 0.5}
     
     >>> slric.lric(G, dq=5, size=1, models='max') # LRIC (Max)
     {1: 0.25, 4: 0.0, 2: 0.25, 3: 0.5}
+
 
 **Case 3** 
 - *q*=5 for node 2, *q*=10 for node 4;
