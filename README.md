@@ -51,14 +51,18 @@ Generate a network using NetworkX package
 **Case 1**
 - *q*=60% of weighted in-degree (in percentage);
 -  nodes have the same size (*size* = 1).
+<a/>
 
  
     >>> slric.sric(G, q=60, size=1) # SRIC 
     {1: 0.36363636363636365, 4: 0.0, 2: 0.09740259740259741, 3: 0.538961038961039}
+    
     >>> slric.lric(G, q=60, size=1, models='max') # LRIC (Max) 
     {1: 0.27450980392156865, 4: 0.0, 2: 0.1470588235294118, 3: 0.5784313725490197}
+    
     >>> slric.lric(G, q=60, size=1, models='maxmin') # LRIC (MaxMin)
     {1: 0.27450980392156865, 4: 0.0, 2: 0.1470588235294118, 3: 0.5784313725490197}
+    
     >>> slric.lric(G, q=60, size=1, models='pagerank') # LRIC (PageRank)
     {1: 0.32165639923246203, 4: 0.0, 2: 0.18808528619697315, 3: 0.49025831457056473}
  
@@ -66,7 +70,7 @@ Generate a network using NetworkX package
  **Case 2** 
 - *q*=5 for each node (defined quota, *dq*);
 - nodes have the same size (*size* = 1).
-
+<a/>
  
     
     >>> slric.sric(G, dq=5, size=1) # SRIC
@@ -79,6 +83,7 @@ Generate a network using NetworkX package
 **Case 3** 
 - *q*=5 for node 2, *q*=10 for node 4;
 - nodes have the same size (*size* = 1).
+<a/>
 
 
     >>> d = dict()
