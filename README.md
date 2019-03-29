@@ -67,6 +67,7 @@ Generate a network using NetworkX package
     {1: 0.32165639923246203, 4: 0.0, 2: 0.18808528619697315, 3: 0.49025831457056473}
  
  
+ 
  **Case 2** 
 - *q*=5 for each node (defined quota, *dq*);
 - nodes have the same size (*size* = 1).
