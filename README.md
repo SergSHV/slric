@@ -31,7 +31,7 @@ Install the latest version from GitHub:
 
 ## Load SLRIC package:
 
- 
+
     >>> import slric
 
 
@@ -46,9 +46,9 @@ Generate a network using NetworkX package
     >>> G.add_edge(2, 4, weight=5)
     >>> G.add_edge(3, 4, weight=2)
     >>> G.add_edge(3, 2, weight=6) 
- 
- 
- 
+
+
+
 **Case 1**
 - *q*=60% of weighted in-degree (in percentage);
 -  nodes have the same size (*size* = 1).
