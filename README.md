@@ -51,7 +51,9 @@ Generate a network using NetworkX package
 **Case 1**
 - *q*=60% of weighted in-degree (in percentage);
 -  nodes have the same size (*size* = 1).
-<a> </a>
+<a href=""> </a>
+
+
 
  
     >>> slric.sric(G, q=60, size=1) # SRIC 
