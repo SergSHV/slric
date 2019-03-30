@@ -11,6 +11,7 @@ setup(
     author_email='shvydun@hse.ru',
     description='SRIC and LRIC indices calculation',
     long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     install_requires=[
                        'numpy', 'cvxopt', 'networkx']
 )
