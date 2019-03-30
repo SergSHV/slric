@@ -119,5 +119,6 @@ Generate a network using NetworkX package
 
 BSD 3-Clause License
 
-Copyright (c) 2019, Fuad Aleskerov, Natalia Meshcheryakova, Sergey Shvydun
+Copyright (c) 2019, Fuad Aleskerov, Natalia Meshcheryakova, Sergey Shvydun.
+
 All rights reserved.
