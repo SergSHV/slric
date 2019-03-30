@@ -51,7 +51,8 @@ Generate a network using NetworkX package
 **Case 1**
 - *q*=60% of weighted in-degree (in percentage);
 -  nodes have the same size (*size* = 1).
-<a href=""> </a>
+
+[//]: # (Case 1)
 
 
 
@@ -72,7 +73,8 @@ Generate a network using NetworkX package
  **Case 2** 
 - *q*=5 for each node (defined quota, *dq*);
 - nodes have the same size (*size* = 1).
-<a> </a>
+
+[//]: # (Case 2)
  
     
     >>> slric.sric(G, dq=5, size=1) # SRIC
@@ -85,7 +87,8 @@ Generate a network using NetworkX package
 **Case 3** 
 - *q*=5 for node 2, *q*=10 for node 4;
 - nodes have the same size (*size* = 1).
-<a> </a>
+
+[//]: # (Case 3)
 
 
     >>> d = dict()
@@ -101,7 +104,7 @@ Generate a network using NetworkX package
 
 ## Write LRIC results to file
     >>> from slric import lric, GraphQW
-    >>> ranking, lric_graph = lric(G, q=60, size=1, models=['max', 'maxmin'], data=TRUE) # LRIC (Max) 
+    >>> ranking, lric_graph = lric(G, q=60, size=1, models=['max', 'maxmin'], data=TRUE)
     >>> GraphQW.write_centrality(lric_graph, 'output.txt', separator=';', mode='w'):
 
 
