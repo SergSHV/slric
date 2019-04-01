@@ -105,7 +105,7 @@ Generate a network using NetworkX package
 ## Write LRIC results to file
     >>> from slric import lric, GraphQW
     >>> ranking, lric_graph = lric(G, q=60, size=1, models=['max', 'maxmin'], data=TRUE)
-    >>> GraphQW.write_centrality(lric_graph, 'output.txt', separator=';', mode='w'):
+    >>> GraphQW.write_centrality(lric_graph, 'output.txt', separator=';', mode='w')
 
 
 ## Additional features
