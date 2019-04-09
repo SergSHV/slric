@@ -25,9 +25,9 @@ Install the package from PyPI:
 
     $ pip install slric
 
-Install the latest version from GitHub:
+You can also install the latest version from GitHub:
 
-    $ pip install pip install git+https://github.com/SergSHV/slric.git
+    $ pip install git+https://github.com/SergSHV/slric.git
 
 ## Load SLRIC package:
 
