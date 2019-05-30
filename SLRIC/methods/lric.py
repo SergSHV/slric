@@ -24,7 +24,7 @@ def find_lp(arr, node, group_size, ex_list):
                 sub_arr = arr[(arr[:, 5] != node) & (arr[:, 4] != -2)]
             if len(sub_arr > 0):  # check if there are other members
                 solution = ilp(sub_arr[:, 0], arr[node][2], arr[node][3], group_size)  # solve 0-1 problem
-                if solution is None:  # no solution found
+                if solution is None or isclose(sum(solution[:-1]),0):  # no solution found
                     if isclose(arr[node][4], 0):
                         for i in range(node + 1):
                             arr[i][4] = -2  # nodes are not pivotal
@@ -32,7 +32,7 @@ def find_lp(arr, node, group_size, ex_list):
                         arr[node][4] = -1  # node is considered
                 else:
                     f = 0
-                    for i in range(len(solution)):
+                    for i in range(len(solution)-1):
                         f += solution[i]*sub_arr[i, 0]
                     if isclose(f, arr[node][3]) and isclose(arr[node][4], 0):  # solution - node is not pivotal
                         for i in range(node + 1):
@@ -40,7 +40,7 @@ def find_lp(arr, node, group_size, ex_list):
                     else:
                         arr[node][4] = -1  # node is considered
                         arr[node][3] = f  # update node influence
-                        for i in range(len(solution)):  # update influence for other group members
+                        for i in range(len(solution)-1):  # update influence for other group members
                             if isclose(solution[i], 1):
                                 v = f + arr[node][0] - sub_arr[i][0]
                                 if v < sub_arr[i][3]:
@@ -78,12 +78,16 @@ def check_neighbors(start, end, counter, ind, arr):
 
 # Zero-One Linear Programming Solver
 def ilp(weights, min_value, max_value, group_size):
-    weights = np.array(weights, dtype='d')
-    c = matrix(weights, tc='d')
-    G = matrix([list(-weights), list(weights), [1]*len(weights)], tc='d')
-    h = matrix(np.array([-min_value, max_value, group_size], dtype='d'), tc='d')  # group is winning, node is pivotal, group size <= limit
-    glpk.options['msg_lev'] = 'GLP_MSG_OFF'
-    return glpk.ilp(c, G.T, h, B=set(range(len(weights))))[1]
+    sum_w = sum(weights)
+    if sum_w < min_value:
+        return None
+    else:
+        weights = np.array(np.append(weights,[max_value]), dtype='d')
+        c = matrix(weights, tc='d')
+        G = matrix([list(-weights), list(weights), [1]*len(weights)], tc='d')
+        h = matrix(np.array([-min_value, max_value, group_size], dtype='d'), tc='d')  # group is winning, node is pivotal, group size <= limit
+        glpk.options['msg_lev'] = 'GLP_MSG_OFF'
+        return glpk.ilp(c, G.T, h, B=set(range(len(weights))))[1]
 
 
 # Find next element for LRIC calculation

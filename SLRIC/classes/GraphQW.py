@@ -4,14 +4,20 @@ import networkx.convert as convert
 
 # Class "GraphQW" is a NetworkX graph with generated individual attributes
 class GraphQW(nx.DiGraph):
-    def __init__(self, g = {}, q = None, dq = None, limcoal = None, dw = None):
+    def __init__(self, g = None, q = None, dq = None, limcoal = None, dw = None):
         self.graph = {}
         self._node = self.node_dict_factory()
         self._adj = self.adjlist_outer_dict_factory()  # empty adjacency dict
         self._pred = self.adjlist_outer_dict_factory()  # predecessor
         self._succ = self._adj  # successor
         if g is not None:
-            convert.to_networkx_graph(g, create_using=self)
+            self.graph.update(g.graph)
+            self._node.update((n, dd.copy()) for n, dd in g.nodes.items())
+            self._adj.update(g._adj)
+            self._pred.update(g._pred)
+            self._succ.update(g._succ)
+
+
             nx.set_node_attributes(self, name='indeg', values=dict(self.in_degree(weight='weight')))
             self.set_quota(q, dq)
             self.set_size(dw)
