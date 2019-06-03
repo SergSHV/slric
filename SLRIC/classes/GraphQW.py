@@ -14,9 +14,10 @@ class GraphQW(nx.DiGraph):
             self.graph.update(g.graph)
             self._node.update((n, dd.copy()) for n, dd in g.nodes.items())
             self._adj.update(g._adj)
+            if not nx.is_directed(g):
+                g = nx.DiGraph(g)
             self._pred.update(g._pred)
             self._succ.update(g._succ)
-
 
             nx.set_node_attributes(self, name='indeg', values=dict(self.in_degree(weight='weight')))
             self.set_quota(q, dq)
