@@ -1,7 +1,7 @@
 from classes.GraphQW import GraphQW
 import methods.indirect_influence as ii
 import methods.direct_influence as di
-import networkx as nx
+import methods.netsim as netsim
 
 
 def lric(graph, q=20, dq=None, group_size=4, size=None, limpath=3, models='max', data=False):
@@ -64,3 +64,25 @@ def sric(graph, q=20, dq=None, group_size=4, size=None, data=False):
         return ranking, g
     else:
         return ranking
+
+
+def graphsim(graph1, graph2, r1=None, r2=None, eps=0.05, method=1, edge_name="weight"):
+    """
+    :param graph1: graph 1
+    :param graph2: graph 2
+    :param r1: ranking in graph 1
+    :param r2: ranking in graph 2
+    :param eps: measurement error
+    :param method: method for interval construction (o - absolute, 1 - relative)
+    :param edge_name: compared edge attribute
+    :return: topology and ranking distance
+    """
+    if r1 is None or r2 is None:
+        res1 = lric(graph1, data=True)
+        res2 = lric(graph2, data=True)
+        rank_dist = netsim.rank_dist(res1[0], res2[0], eps, method)
+        top_dist = netsim.top_dist(res1[1], res2[1], edge_name)
+    else:
+        rank_dist = netsim.rank_dist(r1, r2, eps, method)
+        top_dist = netsim.top_dist(graph1, graph2, edge_name)
+    return top_dist, rank_dist
