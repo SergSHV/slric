@@ -66,23 +66,24 @@ def sric(graph, q=20, dq=None, group_size=4, size=None, data=False):
         return ranking
 
 
-def graphsim(graph1, graph2, r1=None, r2=None, eps=0.05, method=1, edge_name="weight"):
+def graphsim(graph1, graph2, r1=None, r2=None, eps=0.05, eps_method=1, edge_name="weight", topology_type=0):
     """
     :param graph1: graph 1
     :param graph2: graph 2
     :param r1: ranking in graph 1
     :param r2: ranking in graph 2
     :param eps: measurement error
-    :param method: method for interval construction (o - absolute, 1 - relative)
+    :param eps_method: method for interval construction (o - absolute, 1 - relative)
     :param edge_name: compared edge attribute
+    :param topology_type: topology distance normalization method
     :return: topology and ranking distance
     """
     if r1 is None or r2 is None:
         res1 = lric(graph1, data=True)
         res2 = lric(graph2, data=True)
-        rank_dist = ns.rank_dist(res1[0], res2[0], eps, method)
-        top_dist = ns.top_dist(res1[1], res2[1], edge_name)
+        rank_dist = ns.rank_dist(res1[0], res2[0], eps, eps_method)
+        top_dist = ns.top_dist(res1[1], res2[1], edge_name, topology_type)
     else:
-        rank_dist = ns.rank_dist(r1, r2, eps, method)
-        top_dist = ns.top_dist(graph1, graph2, edge_name)
+        rank_dist = ns.rank_dist(r1, r2, eps, eps_method)
+        top_dist = ns.top_dist(graph1, graph2, edge_name, topology_type)
     return top_dist, rank_dist

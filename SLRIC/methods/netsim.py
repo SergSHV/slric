@@ -194,11 +194,12 @@ def rank_dist(r1, r2, eps, method):
 
 
 # Topology Distance
-def top_dist(g1, g2, name='weight'):
+def top_dist(g1, g2, name='weight', topology_type=0):
     """
     :param g1: graph 1
     :param g2:  graph 2
     :param name: compared edge attribute
+    :param topology_type: topology distance normalization method
     :return: topology distance
     """
     max_v = max_edge(g1, name, max_edge(g2, name, 0))  # find max value in a graph
@@ -212,7 +213,7 @@ def top_dist(g1, g2, name='weight'):
             nodes2 = set(g2.neighbors(node)) - nodes1 # distinct adjacent nodes in g2
             for node2 in nodes1:
                 if node2 in g2.neighbors(node):
-                    v += min(g1[node][node2][name], g2[node][node2][name])
+                    v += abs(g1[node][node2][name]-g2[node][node2][name])
                 else:
                     v += g1[node][node2][name]
             for node2 in nodes2:
@@ -222,4 +223,9 @@ def top_dist(g1, g2, name='weight'):
                 v += degree1[node]
             else:
                 v += degree2[node]  # node appears only in g2
-    return v/max_v/len(nodes_list)/len(nodes_list)
+    v /= max_v
+    if topology_type == 0:
+        return v/len(nodes_list)/len(nodes_list)
+    else:
+        num_edges = len(set(g1.edges()) | set(g2.edges()))
+        return v/num_edges/num_edges
