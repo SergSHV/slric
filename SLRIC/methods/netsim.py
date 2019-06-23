@@ -222,4 +222,4 @@ def top_dist(g1, g2, name='weight'):
                 v += degree1[node]
             else:
                 v += degree2[node]  # node appears only in g2
-    return v/(max_v * len(nodes_list) ^ 2)
+    return v/max_v/len(nodes_list)/len(nodes_list)

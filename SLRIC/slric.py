@@ -1,7 +1,7 @@
 from classes.GraphQW import GraphQW
 import methods.indirect_influence as ii
 import methods.direct_influence as di
-import methods.netsim as netsim
+import methods.netsim as ns
 
 
 def lric(graph, q=20, dq=None, group_size=4, size=None, limpath=3, models='max', data=False):
@@ -80,9 +80,9 @@ def graphsim(graph1, graph2, r1=None, r2=None, eps=0.05, method=1, edge_name="we
     if r1 is None or r2 is None:
         res1 = lric(graph1, data=True)
         res2 = lric(graph2, data=True)
-        rank_dist = netsim.rank_dist(res1[0], res2[0], eps, method)
-        top_dist = netsim.top_dist(res1[1], res2[1], edge_name)
+        rank_dist = ns.rank_dist(res1[0], res2[0], eps, method)
+        top_dist = ns.top_dist(res1[1], res2[1], edge_name)
     else:
-        rank_dist = netsim.rank_dist(r1, r2, eps, method)
-        top_dist = netsim.top_dist(graph1, graph2, edge_name)
+        rank_dist = ns.rank_dist(r1, r2, eps, method)
+        top_dist = ns.top_dist(graph1, graph2, edge_name)
     return top_dist, rank_dist
