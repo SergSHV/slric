@@ -38,7 +38,7 @@ def indirect_paths(g, path_lim, aggregation, criterion):
         if path_lim % 2 == 0:
             return indirect_paths(compute_path(g, g, aggregation, criterion), path_lim // 2, type, criterion)
         else:
-            return compute_path(g, indirect_paths(g, path_lim - 1, aggregation, criterion), type, criterion)
+            return compute_path(indirect_paths(g, path_lim - 1, aggregation, criterion), g, type, criterion)
 
 
 # Evaluate path strength [criterion: 0 (sum), 1 (min), 2 (multiplication)]
