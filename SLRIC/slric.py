@@ -119,9 +119,9 @@ def interdependence(graph, q=50, dq=None, group_size=None, size=None, limpath=3,
         dq = [dq, dq]
     if isinstance(size, dict)or isinstance(size, float) or isinstance(size, int) or size is None:
         size = [size, size]
-    inf_g = di.pairwise_inf(GraphQW(graph, q[0], dq[0], group_size, size[0]), method='LRIC') # define direct influence
+    inf_g = di.pairwise_inf(GraphQW(graph, q[0], dq[0], group_size, size[0]), method='LRIC')  # define direct influence
     dep_g = di.pairwise_inf(GraphQW(nx.reverse(graph), q[1], dq[1],
-                                    group_size, size[1]), method='LRIC') # define direct dependence
+                                    group_size, size[1]), method='LRIC')  # define direct dependence
 
     if model == 1:  # model 1: nodes interdependence as aggregation of indirect influences
         indirect1 = ii.indirect_paths(inf_g, limpath, 0, 2)
