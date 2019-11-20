@@ -57,11 +57,17 @@ def individual_lric(adj_links, quota, group_size):
     inf_list = dict()  # results of LRIC influence
     nodes_tuple, nodes_names = [], []  # adjacent nodes (weight, ID1, min influence, quota, status, ID2), nodes names
     s = 0
+    if len(adj_links) > 0:
+        for link in adj_links:
+            min_w, max_w = link[2]['weight'], link[2]['weight']
+            break
     for link in adj_links:  # generate list of neighbors
-        if link[2]['weight'] >= quota:
+        w = link[2]['weight']
+        if w >= quota:
             inf_list[link[0]] = 1
         else:
-            w = link[2]['weight']
+            min_w = min(min_w, w)
+            max_w = min(max_w, w)
             nodes_names.append(link[0])
             nodes_tuple.append([w, len(nodes_tuple), quota - w, quota, 0, 0])
             s += w
@@ -70,6 +76,10 @@ def individual_lric(adj_links, quota, group_size):
         if isclose(s, quota):  # if total weight is equal to quota, then influence is proportional to links weights
             for inf in nodes_tuple:
                 inf_list[nodes_names[inf[1]]] = inf[0]/quota
+        elif s > quota and isclose(min_w, max_w):
+            n = ceil(quota / max_w)
+            for inf in nodes_tuple:
+                inf_list[nodes_names[inf[1]]] = 1 / n
         else:
             nodes_tuple = np.asarray(sorted(nodes_tuple))
             nodes_tuple[:, 5] = range(len(nodes_tuple))  # generate ID2
