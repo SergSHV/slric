@@ -18,7 +18,9 @@
 <li>Node 3 influences node 4 via node 2.</li>
 </ul>
 <p>Website: <a href="https://github.com/SergSHV/slric" rel="nofollow">https://github.com/SergSHV/slric</a>
-<p>Authors: <a href="https://www.hse.ru/en/org/persons/140159" rel="nofollow">Fuad Aleskerov</a>, <a href="https://www.hse.ru/en/staff/natamesc" rel="nofollow">Natalia Meshcheryakova</a>, <a href="https://www.hse.ru/en/staff/Shv" rel="nofollow">Sergey Shvydun</a> (HSE University, ICS RAS)</div>
+<p>Authors: <a href="https://www.hse.ru/en/org/persons/140159" rel="nofollow">Fuad Aleskerov</a>, <a href="https://www.hse.ru/en/staff/natamesc" rel="nofollow">Natalia Meshcheryakova</a>, <a href="https://www.hse.ru/en/staff/Shv" rel="nofollow">Sergey Shvydun</a> (HSE University, ICS RAS)
+<p>Reference: Aleskerov, F., Shvydun, S., & Meshcheryakova, N. (2021). New Centrality Measures in Networks: How to Take into Account the Parameters of the Nodes and Group Influence of Nodes to Nodes (1st ed.). Chapman and Hall/CRC. https://doi.org/10.1201/9781003203421 </p>
+</div>
 
 ## Installation
 Install the package from PyPI:
