@@ -64,7 +64,8 @@ class GraphQW(nx.DiGraph):
     def aggregate(self, name=''):
         pers = dict(zip(self.nodes(), [0] * len(self)))
         for edge in self.edges(data=True):
-            pers[edge[0]] += self.nodes[edge[1]]['size']*edge[2]['weight']
+            if edge[0] != edge[1]:
+                pers[edge[0]] += self.nodes[edge[1]]['size']*edge[2]['weight']
         pers = self.normalize(pers)
         self.set_param(name, pers)
         return pers

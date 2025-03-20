@@ -67,7 +67,7 @@ def individual_lric(adj_links, quota, group_size):
             inf_list[link[0]] = 1
         else:
             min_w = min(min_w, w)
-            max_w = min(max_w, w)
+            max_w = max(max_w, w)
             nodes_names.append(link[0])
             nodes_tuple.append([w, len(nodes_tuple), quota - w, quota, 0, 0])
             s += w
